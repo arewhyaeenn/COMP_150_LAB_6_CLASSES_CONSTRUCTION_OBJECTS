@@ -790,13 +790,15 @@ No mutators should be provided. `Triangle` objects are immutable.
 
 ## Task 6
 
-In this task, you will implement the a data structure called a linked list. Linked lists are structures which, like arrays, exist to store multiple values in a single variable. A linked list is composed of 0 or more nodes. Each node stores a single value (its data) and a reference to the next node in the list. For instance, consider an array storing three integers `{1, 2, 3}`. The corresponding linked list would look like this:
+In this task, you will implement the a data structure called a linked list. Linked lists are data structures which, like arrays, exist to store multiple values, usually of a single type. They will be among the first structures you will cover in most data structures courses.
+
+A linked list is composed of 0 or more nodes. Each node stores a single value (its data) and a reference to the next node in the list. For instance, consider an array storing three integers `{1, 2, 3}`. The corresponding linked list would look like this:
 
  ![](./figures/linkedList.png)
  
 As you can see in the image above, the first node in the linked list is referred to as the "head" and the last one is referred to as the "tail". The reference in the tail which would point to the next node is `null`; there is no next node.
 
-You may find it helpful to watch [this video on linked lists](https://www.youtube.com/watch?v=WwfhLC16bis&t=69s) before moving on, but note that there are differences betweem the implementation made in the video and the implementation described below.
+You may find it helpful to watch [this video on linked lists](https://www.youtube.com/watch?v=WwfhLC16bis&t=69s) before moving on, but note that there are differences between the implementation made in the video and the implementation described below.
 
 You are to implement a linked list which stores `int` data. Your implementation will be broken into two classes. The first is the `LinkedListNode` class, which will contain data and methods for the individual nodes within the list. The second is the `LinkedList` class itself, which will store references to the head and tail of the list, some metadata (such as the length of the list), and will define several methods for mutating and accessing the list.
 
