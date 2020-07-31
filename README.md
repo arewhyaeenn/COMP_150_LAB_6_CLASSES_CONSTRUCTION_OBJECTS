@@ -263,7 +263,7 @@ Don't forget to edit the constructors to initialize the data!
 
 As we've discussed, `static` elements of a class are **class data** (they are referenced / called through the class itself) while non-`static` elements are **instance data**, which are referenced / called through instances.
 
-Nonstatic methods, i.e. **instance methods**, are done "by an instance" of the class, with access to that instance. The instance making the method call is referred to as `this` within these methods. Below we have a modified version of the `Person` class, which uses the keyword `this` in its instance methods. 
+Nonstatic methods, i.e. **instance methods**, are done "by an instance" of the class, with access to that instance's data. The instance making the method call is referred to as `this` within these methods. Below we have a modified version of the `Person` class, which uses the keyword `this` in its instance methods.
 
 In the [client above](#PersonClient), when `getName` is accessed through the `Person` instance called `joanne` with `joanne.getName()`, any occurences of `this` in the `getName` method refer to `joanne`. In the `john.getName()` call, `this` refers to `john`.
 
@@ -335,13 +335,15 @@ Every class in Java is an extension of the `Object` class. This means that any o
 
 One effect of this `Object` inheritance is that all classes have a constructor, even if one isn't defined, because the `Object` class has a constructor. This is why we can make `new Math()` objects, even though the `Math` class doesn't have any constructors of its own, nor does it have any nonstatic data or methods.
 
-Every class needs a `toString` method; if `toString` is not defined in a class, and objects from that class are constructed, then these objects use the `toString` provided in the `Object` class, which returns a `String` containing the name of the class and the address of the object.
+Most object-blueprint classes need a `toString` method; if `toString` is not defined in a class, and objects from that class are constructed, then these objects use the `toString` provided in the `Object` class. `Object.toString` is somewhat uninformative; it returns a `String` containing the name of the class and the address of the instance. When an instance is printed, such as `System.out.println(joanne);`, the `toString()` method is called implicitly. That is, `System.out.println(joanne);` is equivalent to `System.out.println(joanne.toString);`.
 
 **EXERCISE 10** Edit the [client above](#PersonClient) to print `joanne` instead of `joanne.getName()`. What happens?
 
-Since every class inherits from the `Object` class, every instance of every class **is an `Object`**. If you want to store generic data (data of "any type") in an array or `ArrayList`, this can be done with an array or `ArrayList` of `Object`s.
+**EXERCISE 11** Add a `toString` method to the `Person` class. This method should construct and return a `String` containing some identifying information about the `Person` instance from which it is called.
 
-**EXERCISE 11** Primitive data isn't stored in objects, so it cannot be stored in an array or `ArrayList` of `Object`s. If you want to store primitive data in an `Object` array, how might you go about it? In other words, what classes would you use to replace primitive data types for storage in an `Object` array?
+Since every class inherits from the `Object` class, every instance of every class **is an `Object`**. If you want to store generic data (data of "any type") in an array or `ArrayList`, this can be done with an array or `ArrayList` of `Object`s like this: `ArrayList<Object> myGenericList = new ArrayList<Object>();`.
+
+**EXERCISE 12** Primitive data isn't stored in objects, so it cannot be stored in an array or `ArrayList` of `Object`s. If you want to store primitive data in an `Object` array, how might you go about it? In other words, what classes would you use to replace primitive data types for storage in an `Object` array?
 
 ## Answers to selected exercises
 
@@ -644,7 +646,7 @@ Download or copy the provided [Fraction.java](./Fractions/Fraction.java) and [Fr
 
 `Fraction` instances store 2 pieces of instance data: the numerator and denominator, in `int` form. It contains two constructors, and several completed methods near the top. There are several incomplete methods with `//TODO` in them; these methods need to be completed. There are comments describing what each method needs to accomplish.
 
-Create a client to test your `Fraction` class in the comments in the `FractionCalculator`'s main method; commented instructions are provided outlining how the client should proceed.
+Create a client to test your `Fraction` class in the `FractionCalculator`'s main method; commented instructions are provided outlining how the client should proceed.
 
 ## Task 3
 
@@ -652,15 +654,15 @@ In this task, you will create a class called `Book`. A client has been provided 
 
 ### Instance Data
 
-The `Book` class should contain three `private` attributes, all `String`s. These fields are intended to store the book's title, author, and ISBN. These should all be should be `final`; once a book has been created, neither none of its attributes can change.
+The `Book` class should contain three `private` attributes, all `String`s. These fields are intended to store the book's title, author, and ISBN. These should all be should be `final`; once a book has been created, none of its attributes can change.
 
 ### Constructor
 
-It should have no default constructor; it's only constructor should take three `String` arguments: the book's title, author, and ISBN, in that order.
+There should be no default constructor; the only constructor should take three `String` arguments: the book's title, author, and ISBN, in that order.
 
 The title should be stored in its entirety in the appropriate attribute.
 
-If the provided author's name contains any spaces, the last name (i.e. the substring consisting of all characters after the last space) should be stored in the author field.
+If the provided author's name contains any spaces, the last name (i.e. the substring consisting of all characters after the last space) should be stored in the author field. If the provided name contains no spaces, it should be assumed to be the last name and should be stored in the author field.
 
 The ISBN should consist of exactly 10 digits and nothing else. ISBNs are often written with dashes separating different groups of digits, but that will not be the case for these ISBNs. It should be checked that the ISBN is valid by checking if the last digit (the **checksum**) is correct.
 
@@ -670,7 +672,7 @@ Your process for validating an ISBN should be as follows:
 
 * Ensure that it has exactly 10 characters.
 * Ensure that the first 9 characters are all digits.
-* Ensure that the 10th character (the check digit, or checksum) is correct (a capital `'X'` will be used if the checksum is 10).
+* Ensure that the 10th character (the check digit, or checksum) is correct (a capital `'X'` will be used if the checksum is 10; otherwise the appropriate digit will be used).
 
 If the ISBN is invalid, an `InvalidISBNException` should be thrown, with the invalid ISBN in string form as an argument. This can be done with the statement `throw new InvalidISBNException( invalidISBN );`, where `invalidISBN` is the the variable containing the ISBN string that is determined to be invalid. In order to support this exception, you will need to:
 
@@ -712,7 +714,7 @@ Three public accessor methods, `getTitle`,  `getAuthor`, and `getISBN` should be
 * `isWrittenBy`
 	* public
 	* 1 argument, a `String`, assumed to be an author's last name
-	* return true if the provided `Sting` is the `Book`'s author's last name, and false otherwise
+	* return true if the provided `String` is the `Book`'s author's last name, and false otherwise
 
 ### Other Methods
 
@@ -720,7 +722,7 @@ No other methods are required. You may, of course, add other methods to facilita
 
 ## Task 4
 
-In this task, you will complete the provided [BookShelf.java](./Books/BookShelf.java) by filling out the constructor and the incomplete methods. Once you've completed the `add` method, try running the provided [BookShelfClient.java](./Books/BookShelfClient.java); the results should look something like this:
+In this task, you will complete the provided [BookShelf.java](./Books/BookShelf.java) by filling out the constructor and the incomplete methods. The `BookShelf` class will create and maintain a 2D array of `Book`s. Once you've completed the `add` method, try running the provided [BookShelfClient.java](./Books/BookShelfClient.java); the results should look something like this:
 
  ```
  -------------------------------------------------------------------------------------
@@ -750,11 +752,11 @@ As you implement methods in the `BookShelf` class, expand the `BookShelfClient` 
 
 ## Task 5
 
-In this task, you will recreate a task you did in an earlier lab, but in an Object-Oriented style. Your task is to implement and test a `Triangle` class meeting the following description.
+In this task, you will recreate a task you did in an earlier lab, but in an object-oriented style. Your task is to implement and test a `Triangle` class meeting the following description.
 
 ### Instance Data
 
-Each triangle should store its instance data as an array of three doubles, denoting its side lengths. This array should be private, and no methods should be provided which allow clients to mutate it. This should make triangle instances **immutable**; once they have been constructed, their data cannot be changed.
+Each triangle should store its instance data as an array of three doubles, denoting its side lengths. This array should be private, and no methods should be provided which allow clients to mutate it. This should make triangle instances **immutable** to clients; once they have been constructed, their data cannot be changed.
 
 ### Constructors
 
@@ -826,7 +828,7 @@ Complete the `LinkedListNode` class described below. Then, use the provided [Lin
 
 ### `LinkedList`
 
-Once your `LinkedListNode` class passes all of the tests in the client, you're ready to create your `LinkedList` class. A skeleton has been provided in [LinkedList.java](./LinkedLists/LinkedList.java), which you'll need to complete. You can test using the provided [LinkedListClient.java](./LinkedLists/LinkedListClient.java). You should implement the methods in the order that the client tests them, and fully debug each one before moving on.
+Once your `LinkedListNode` class passes all of the tests in the client, you're ready to create your `LinkedList` class. A skeleton has been provided in [LinkedList.java](./LinkedLists/LinkedList.java), which you'll need to complete. Comments provide direction regarding what each method should do, as well as some tips and reminders. You can test using the provided [LinkedListClient.java](./LinkedLists/LinkedListClient.java). You should implement the methods in the order that the client tests them, and fully debug each one before moving on.
 
 Sample run:
 
@@ -983,7 +985,7 @@ List{ (-5) -> (-4) -> (-3) -> (-2) -> (-1) -> (0) -> (1) -> (2) -> (3) -> (4) ->
 IndexOutOfBoundsException was properly thrown!
 
 Getting value at index 11 of
-	List{ (-5) -> (-4) -> (-3) -> (-2) -> (-1) -> (0) -> (1) -> (2) -> (3) -> (4) -> (5) }
+List{ (-5) -> (-4) -> (-3) -> (-2) -> (-1) -> (0) -> (1) -> (2) -> (3) -> (4) -> (5) }
 IndexOutOfBoundsException was properly thrown!
 
 Check that array metadata is still intact:

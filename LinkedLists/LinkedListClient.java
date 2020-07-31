@@ -94,7 +94,7 @@ public class LinkedListClient
         System.out.println();
 
         System.out.println("Getting value at index " + (prependArray.length + appendArray.length) +
-                " of\n\t" + list);
+                " of\n" + list);
         try
         {
             list.get(prependArray.length + appendArray.length);
