@@ -19,10 +19,10 @@ public class FractionCalculator
 
         //4. performs the requested operation by calling appropriate method from your Fraction class
         //          and displays the result.
-        //          Use switch. See the attached sample run.
+        //          Use a switch and the operation character to determine which operation to do.
         //
-        // HINT:
-        // if I wanted to add two Fraction objects fraction1 and fraction2
+        // For example:
+        // if I wanted to add two Fraction objects fraction1 and fraction2 (because the user entered +)
         // I would do the following to compute the sum and to print the result:
         //
         //     Fraction sum = fraction1.add(fraction2);
