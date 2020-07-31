@@ -796,7 +796,7 @@ In this task, you will implement the a data structure called a linked list. Link
 
 A linked list is composed of 0 or more nodes. Each node stores a single value (its data) and a reference to the next node in the list. For instance, consider an array storing three integers `{1, 2, 3}`. The corresponding linked list would look like this:
 
- ![](./figures/linkedList.png)
+ ![](./figures/linkedlist.png)
  
 As you can see in the image above, the first node in the linked list is referred to as the "head" and the last one is referred to as the "tail". The reference in the tail which would point to the next node is `null`; there is no next node.
 
