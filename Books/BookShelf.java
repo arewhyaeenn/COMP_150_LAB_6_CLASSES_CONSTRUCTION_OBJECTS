@@ -49,7 +49,8 @@ public class BookShelf
      * on each shelf first. "Removing" the book means setting the
      * location where it was previously stored to null. Should only
      * remove a single copy; once such a copy is found, the method
-     * should return true.
+     * should return the a reference to that book (after setting
+     * the array element to null).
      * @param book - the book to be removed
      * @return the removed book, or null if none was found
      */
@@ -83,7 +84,7 @@ public class BookShelf
     /**
      * A pretty toString Method.
      * Don't worry, it's already complete.
-     * Try running the BookShelfClient to see its output!
+     * Try running the BookShelfClient to see its output once you've finished the "add" method.
      * @return a String representing the bookshelf
      */
     public String toString()
