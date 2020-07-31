@@ -16,7 +16,7 @@ In this lab:
 
 At its core, any object is really just data and methods detailing how to interact with the data and with the object's surroundings. A class can be an object blueprint, detailing what data is stored in objects defined by the class (called **instances** of the class) and how those objects edit and reference their data.
 
-Classes use methods called **constructors** to construct objects of their type. For instance, the `Point` in `java.awt` uses a constructor to create `Point` objects, each storing their own coordinates.
+Classes use methods called **constructors** to construct objects of their type. For instance, the `Point` class in `java.awt` uses a constructor to create `Point` objects, each storing their own integer coordinates.
 
 ### Class data, instance data and `static`
 
@@ -25,7 +25,7 @@ When declaring data in the class scope (i.e. in the body of the class, but not i
 * The data can be **instance data**. Each unique object constructed by the class contains its own copy of the data (and these copies can vary in value). Instance data (including instance methods) is accessed through instances, with the accessor `.` operator.
 * The data can be **class data**. All objects share a single copy of the data. Class data is declared using the `static` keyword. Class data (including class methods) is accessed through the class itself, with the accessor `.` operator.
 
-The `Person` class below contains a single `static long` called `numberOfPeople` (whose purpose is to track the number of instantiated `Person` objects). This single counter is shared by the class and all of its instances. It aslo has two nonstatic fields, `name` and `age`. Because these fields are nonstatic, each instantiated `Person` has its own `name` and `age`.
+The `Person` class below contains a single `static long` called `numberOfPeople` (whose purpose is to track the number of instantiated `Person` objects). This single counter is shared by the class and all of its instances. It also has two nonstatic fields, `name` and `age`. Because these fields are nonstatic, each instantiated `Person` has its own `name` and `age`.
 
 ```java
 public class Person
@@ -243,8 +243,8 @@ public class Client
         // Create 2 people
         Person joanne = new Person("Joanne Buck", 47);
         Person john = new Person("John Doe", 0);
-		
-		 // Print their data
+        
+        // Print their data
         System.out.println(joanne.getName() + " is " + joanne.getAge() + " years old.");
         System.out.println(john.getName() + " is " + john.getAge() + " years old.");
         System.out.println("There are " + Person.getNumberOfPeople() + " people.");
@@ -1221,4 +1221,3 @@ Result > { 1 2 3 4 }
 
 Process finished with exit code 0
 ```
-
