@@ -610,7 +610,7 @@ public class Person
 }
 ```
 
-# Lab Tasks
+# Lab Assignment
 
 ## Task 1
 
