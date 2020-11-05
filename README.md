@@ -760,7 +760,7 @@ Each triangle should store its instance data as an array of three doubles, denot
 
 ### Constructors
 
-The triangle should have two constructors. The first (default) constructor should take no arguments, and should set all three side lengths to 1. The second should take three double arguments, and should validate them and then store them in its array of side lengths. If the side lengths are invalid, an `InvalidTriangle` exception should be thrown. You will need to create this exception; use the `InvalidISBNException` provided in a previous task as an example.
+The triangle should have two constructors. The first (default) constructor should take no arguments, and should set all three side lengths to 1. The second should take three double arguments, and should validate them and then store them in its array of side lengths. If the side lengths are invalid, an `InvalidTriangleException` should be thrown. You will need to create this exception; use the `InvalidISBNException` provided in a previous task as an example.
 
 Three side lengths are valid inputs for triangle side lengths if:
 
