@@ -276,7 +276,7 @@ public class LinkedListClient
         for(int i = 0; i < insertIndexes.length; i++)
         {
             System.out.println("Inserting value " + insertValues[i] + " at index " +
-                    insertIndexes[i] + " of" + list);
+                    insertIndexes[i] + " of\n" + list);
             list.insertAtIndex(insertValues[i], insertIndexes[i]);
             System.out.println("Resulting list:");
             displayListAndParams(list);
