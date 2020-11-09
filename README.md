@@ -1187,23 +1187,23 @@ Resulting list:
 
 Inserting value 1 at index 0 ofList{ (3) }
 Resulting list:
-	List   > List{ (1) -> (3) }
+	List   > List{ (3) -> (1) }
 	Length > 2
-	Head   > Node(1)
+	Head   > Node(3)
 	Tail   > Node(3)
 
-Inserting value 4 at index 2 ofList{ (1) -> (3) }
+Inserting value 4 at index 2 ofList{ (3) -> (1) }
 Resulting list:
-	List   > List{ (1) -> (3) -> (4) }
+	List   > List{ (3) -> (4) }
 	Length > 3
-	Head   > Node(1)
+	Head   > Node(3)
 	Tail   > Node(4)
 
-Inserting value 2 at index 1 ofList{ (1) -> (3) -> (4) }
+Inserting value 2 at index 1 ofList{ (3) -> (4) }
 Resulting list:
-	List   > List{ (1) -> (2) -> (3) -> (4) }
+	List   > List{ (3) -> (2) -> (4) }
 	Length > 4
-	Head   > Node(1)
+	Head   > Node(3)
 	Tail   > Node(4)
 
 
